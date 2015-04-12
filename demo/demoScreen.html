@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<style>
+	body{
+		background-color: #6E6E6E;
+	}
+	#phone{
+		padding-left: 300px;
+		vertical-align: center;
+	}
+	#txt1{
+		position: absolute;
+		left: 370px;
+		top:480px;
+		width:190px;
+		background:transparent url(http://html-generator.weebly.com/files/theme/input-text-8.png) repeat-x;  
+		border-color: transparent url(http://html-generator.weebly.com/files/theme/input-text-8.png) repeat-x;  
+		
+		
+	}
+	#txt2{
+		position:absolute;
+		left:365px;
+		top:125px;
+		width:203px;
+		background:transparent url(http://html-generator.weebly.com/files/theme/input-text-8.png) repeat-x;  
+		border-color: transparent url(http://html-generator.weebly.com/files/theme/input-text-8.png) repeat-x;  
+	}
+	/*#plus{
+		position: absolute;
+		width:70px;
+		left:526px;
+		top:139px;
+
+	}
+	#anon{
+		position: absolute;
+		width:40px;
+		left:541px;
+		top:119px;
+	}
+	
+*/
+
+}
+
+</style>
+</head>
+<body>
+	<img src="iphone-black.png" id="phone" alt="phone" align="middle">
+	<input id="txt1" type="text" >
+	<textarea rows="25" cols="50" id="txt2" type="text">
+	</textarea>	
+	<script>
+	//everytime you hit enter, your text moves down. 
+	
+	//everytime you click the plus, turns to red x, and vice versa
+	// $(selector).keydown(function(e)){
+
+	// 	if(e==13){
+	// 		print(yeet);
+	// 	}
+	// };
+	$('#txt1').keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    	if(keycode == '13'){
+        	var text = $("#txt1").val();
+        	var oldText = $("#txt2").val();
+        	$("#txt2").text(oldText+'\n'+text);
+        	$("#txt1").text(null);
+        	document.getElementById("txt1").value="";
+    	}
+	});
+
+
+	</script>
+	
+</body>
