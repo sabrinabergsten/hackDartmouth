@@ -50,9 +50,12 @@
 </head>
 <body>
 	<img src="iphone-black.png" id="phone" alt="phone" align="middle">
-	<input id="txt1" type="text" >
-	<textarea rows="25" cols="50" id="txt2" type="text">
+
+	<textarea rows="22" cols="50" id="txt2" type="text">
 	</textarea>	
+
+	<input id="txt1" type="text" >
+	
 	<script>
 	//everytime you hit enter, your text moves down. 
 	
@@ -63,18 +66,32 @@
 	// 		print(yeet);
 	// 	}
 	// };
+
+
 	$('#txt1').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     	if(keycode == '13'){
         	var text = $("#txt1").val();
         	var oldText = $("#txt2").val();
-        	$("#txt2").text(oldText+'\n'+text);
-        	$("#txt1").text(null);
-        	document.getElementById("txt1").value="";
+
+        	$.post("http://54.165.42.10:8080/incoming",
+        	    {
+        	        Body: text,
+        	        From: "+7739543019"
+        	    },
+        	    function(data, status){
+        	    	var stuff = data.lastElementChild.lastElementChild;
+        	    	var result = stuff.innerHTML;
+        	    	var oldText = $("#txt2").val();
+        	    	$("#txt2").text(oldText+'\n'+result);
+        	    	$("#txt1").text(null);
+    	    });
+	    	$("#txt2").text(oldText+'\n'+text+'\n');
+	    	$("#txt1").text(null);
+	    	document.getElementById("txt1").value="";
     	}
 	});
 
-
 	</script>
-	
 </body>
+</html>
